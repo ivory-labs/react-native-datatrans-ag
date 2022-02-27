@@ -1,18 +1,32 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-datatrans-ag';
+import { StyleSheet, View, Pressable, Text } from 'react-native';
+import {} from 'react-native-datatrans-ag';
+import { initializePayment } from './api';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const handlePayButton = () => {
+    initializePayment({
+      amount: 7.34,
+      quantity: 1,
+      userId: 41,
+      clubId: 3,
+      productId: 6,
+      mobileSDK: true,
+    })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Pressable style={styles.payButton} onPress={handlePayButton}>
+        <Text style={styles.payButtonText}>Pay</Text>
+      </Pressable>
     </View>
   );
 }
@@ -23,9 +37,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  payButton: {
+    backgroundColor: '#000',
+    paddingVertical: 12,
+    paddingHorizontal: 36,
+    borderRadius: 24,
+  },
+  payButtonText: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: '600',
   },
 });

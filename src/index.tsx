@@ -17,6 +17,6 @@ const DatatransAg = NativeModules.DatatransAg
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return DatatransAg.multiply(a, b);
+export function datatransPay(): Promise<any> {
+  return DatatransAg.datatransPay();
 }
