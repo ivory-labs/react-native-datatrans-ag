@@ -1,7 +1,6 @@
 import * as React from 'react';
-
-import { StyleSheet, View, Pressable, Text } from 'react-native';
-import {} from 'react-native-datatrans-ag';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { startTransaction } from 'react-native-datatrans-ag';
 import { initializePayment } from './api';
 
 export default function App() {
@@ -15,7 +14,13 @@ export default function App() {
       mobileSDK: true,
     })
       .then((result) => {
-        console.log(result);
+        startTransaction(result.transactionDetails.mobileToken, {
+          isTesting: true,
+        })
+          .then((r) => console.log(r))
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.error(err);
