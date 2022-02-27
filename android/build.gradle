@@ -7,7 +7,7 @@ buildscript {
         }
 
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.5.3'
+            classpath 'com.android.tools.build:gradle:3.5.4'
         }
     }
 }
@@ -21,7 +21,7 @@ def safeExtGet(prop, fallback) {
 android {
     compileSdkVersion safeExtGet('DatatransAg_compileSdkVersion', 29)
     defaultConfig {
-        minSdkVersion safeExtGet('DatatransAg_minSdkVersion', 16)
+        minSdkVersion safeExtGet('DatatransAg_minSdkVersion', 21) // Min SDK supported by datatrans
         targetSdkVersion safeExtGet('DatatransAg_targetSdkVersion', 29)
         versionCode 1
         versionName "1.0"
@@ -48,6 +48,9 @@ repositories {
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
         url("$rootDir/../node_modules/react-native/android")
     }
+    maven {
+        url 'https://datatrans.jfrog.io/artifactory/mobile-sdk/'
+    }
     google()
     mavenCentral()
     jcenter()
@@ -56,4 +59,5 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'ch.datatrans:android-sdk:1.5.0'
 }
