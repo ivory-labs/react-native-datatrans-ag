@@ -1,0 +1,25 @@
+Script started on Tue Mar  8 23:01:51 2022
+Welcome to fish, the friendly interactive shell
+Type [32mhelp(B[m for instructions on how to use fish
+[?2004h]0;fish /Users/bhathiya/code/react-native-datatrans-ag[30m(B[m[92mbhathiya(B[m@(B[mBhathiyas-MacBook-Air(B[m [32m~/c/react-native-datatrans-ag(B[m (master)(B[m> [K[71Cs[72C[38;2;255;0;0ms[72C[30m(B[m[38;2;85;85;85mcript[72C[30m(B[m[38;2;255;0;0mc[38;2;85;85;85mript[73C[30m(B[m[38;2;255;0;0mr[38;2;85;85;85mipt[74C[30m(B[m
+[1m[4mscr(B[mcpy                                         ([38;2;179;160;109mDisplay and control your Android device[30m(B[m)
+[1m[4mscr(B[meen                               ([38;2;179;160;109mScreen manager with VT100/ANSI terminal emulation[30m(B[m)
+[1m[4mscr(B[meencapture  ([38;2;179;160;109mCapture images from the screen and save them to a file or the clipboard[30m(B[m)
+[1m[4mscr(B[meenshot2                                                          ([38;2;179;160;109mExecutable, 5.5kB[30m(B[m)
+[1m[97m[46m…and 2 more rows[A[A[A[A[A[74C(B[m[30m[30m(B[m[38;2;255;0;0mc[30m(B[m[J[75C[38;2;85;85;85mpy[75C[30m(B[m[38;2;255;0;0mpy [78C[30m(B[m[38;2;0;95;215mscrcpy[30m(B[m [78C
+[30m(B[m[?2004l]0;scrcpy  /Users/bhathiya/code/react-native-datatrans-ag[30m(B[m2022-03-08 23:01:54.709 scrcpy[41930:1048378] INFO: scrcpy 1.19 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar[K/opt/homebrew/Cellar/scrcpy/1.19/share/scr...skipped. 25.1 MB/s (37330 bytes in 0.001s)[K
+[server] INFO: Device: Xiaomi M2012K11AG (Android 11)
+2022-03-08 23:01:55.047 scrcpy[41930:1048378] INFO: Renderer: metal
+2022-03-08 23:01:55.052 scrcpy[41930:1048378] INFO: Initial texture: 1080x2400
+2022-03-08 23:04:56.786 scrcpy[41930:1048378] WARN: Killing the server...
+[2m⏎(B[m                                                                                       ⏎ [K[?2004h]0;fish /Users/bhathiya/code/react-native-datatrans-ag[30m(B[m[92mbhathiya(B[m@(B[mBhathiyas-MacBook-Air(B[m [32m~/c/react-native-datatrans-ag(B[m (master)(B[m> [K[71Cscrcpy[77C[38;2;0;95;215mscrcpy[77C[30m(B[m
+[30m(B[m[?2004l]0;scrcpy /Users/bhathiya/code/react-native-datatrans-ag[30m(B[m2022-03-08 23:15:35.260 scrcpy[42103:1054408] INFO: scrcpy 1.19 <https://github.com/Genymobile/scrcpy>
+[100%] /data/local/tmp/scrcpy-server.jar[K/opt/homebrew/Cellar/scrcpy/1.19/share/scr...skipped. 24.0 MB/s (37330 bytes in 0.001s)[K
+[server] INFO: Device: Xiaomi M2012K11AG (Android 11)
+2022-03-08 23:15:35.576 scrcpy[42103:1054408] INFO: Renderer: metal
+2022-03-08 23:15:35.587 scrcpy[42103:1054408] INFO: Initial texture: 1080x2400
+2022-03-08 23:16:35.207 scrcpy[42103:1054408] WARN: Device disconnected
+[2m⏎(B[m                                                                                       ⏎ [K[?2004h]0;fish /Users/bhathiya/code/react-native-datatrans-ag[30m(B[m[92mbhathiya(B[m@(B[mBhathiyas-MacBook-Air(B[m [32m~/c/react-native-datatrans-ag(B[m (master)(B[m (B[m[31m[[1m[31m1(B[m[31m](B[m(B[m> [K[75C
+[30m(B[m[30m(B[m[?2004l
+Script done on Wed Mar  9 07:50:46 2022

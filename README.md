@@ -6,16 +6,16 @@ React Native Datatrans AG
 
 ```sh
 npm install react-native-datatrans-ag
+or
+yarn add react-native-datatrans-ag
 ```
 
 ## Usage
 
 ```js
-import { multiply } from "react-native-datatrans-ag";
+import { startTransaction } from 'react-native-datatrans-ag';
 
-// ...
-
-const result = await multiply(3, 7);
+const result = await startTransaction(mobileToken, options);
 ```
 
 ## Contributing
