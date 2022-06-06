@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/sujanan/react-native-datatrans-ag",
+  "repository": "https://github.com/ivory-labs/react-native-datatrans-ag",
   "author": "Bhathiya Wijesinghe <sujananbhathiya@gmail.com> (https://github.com/sujanan)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sujanan/react-native-datatrans-ag/issues"
+    "url": "https://github.com/ivory-labs/react-native-datatrans-ag/issues"
   },
-  "homepage": "https://github.com/sujanan/react-native-datatrans-ag#readme",
+  "homepage": "https://github.com/ivory-labs/react-native-datatrans-ag#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
