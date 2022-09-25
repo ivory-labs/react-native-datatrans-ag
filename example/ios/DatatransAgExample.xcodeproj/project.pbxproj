@@ -414,6 +414,11 @@
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/glog/glog.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-datatrans-ag/react_native_datatrans_ag.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Datatrans/Datatrans.framework/Datatrans",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Datatrans/DTCardScanner.framework/DTCardScanner",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Datatrans/DTKlarna.framework/DTKlarna",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Datatrans/KlarnaMobileSDK.framework/KlarnaMobileSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Datatrans/PPRiskMagnes.framework/PPRiskMagnes",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -439,6 +444,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_datatrans_ag.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Datatrans.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCardScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTKlarna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KlarnaMobileSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPRiskMagnes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
