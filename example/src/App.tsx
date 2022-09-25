@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { startTransaction } from 'react-native-datatrans-ag';
+import { initializePayment } from './api';
 
 export default function App() {
   const handlePayButton = () => {
@@ -8,12 +10,28 @@ export default function App() {
      * This will give you a `mobileToken` which can be passed
      * to the `startTransaction` function with other supported 
      * payment options. 
-     
-      const result = await startTransaction(mobileToken, {
-        isTesting: true,
-      });
-
      */
+
+    initializePayment({
+      "amount": 7.34,
+      "quantity": 1,
+      "userId": 41,
+      "clubId": 3,
+      "productId": 6,
+      "mobileSDK": true
+    })
+    .then((result) => {
+      startTransaction(result.transactionDetails.mobileToken, {
+        isTesting: true,
+      })
+      .then((r) => console.log(r))
+      .catch((err) => {
+        console.error(err);
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   };
 
   return (
