@@ -27,16 +27,34 @@ class DatatransAg: NSObject{
         // https://docs.datatrans.ch/docs/mobile-sdk#ios-integration
         // Demo code
         
-        let transaction = Transaction(mobileToken: mobileToken)
-        transaction.delegate = self
-        transaction.options.testing = true
-        transaction.options.useCertificatePinning = true
+//        let transaction = Transaction(mobileToken: mobileToken)
+//        transaction.delegate = self
+//        transaction.options.testing = true
+//        transaction.options.useCertificatePinning = true
         
-        context = Context(resolver: resolver, rejecter: rejecter)
-        
-        DispatchQueue.main.async {
-            let rootVC = UIApplication.shared.keyWindow!.rootViewController!
-            transaction.start(presentingController: rootVC)
+        do{
+            let transaction = try DAGTransactionFactory().create(
+                mobileToken: mobileToken,
+                options: options)
+            
+            context = Context(resolver: resolver, rejecter: rejecter)
+            
+            DispatchQueue.main.async {
+                let rootVC = UIApplication.shared.keyWindow!.rootViewController!
+                transaction.start(presentingController: rootVC)
+            }
+        }
+        catch let error as DAGTransactionFactory.FactoryError{
+            rejecter(
+                DAGConstants.Status.FAILED,
+                DAGConstants.Errors.PAYPARAM,
+                error)
+        }
+        catch{
+            rejecter(
+                DAGConstants.Status.FAILED,
+                DAGConstants.Errors.UNKNOWN,
+                error)
         }
     }
     
@@ -49,7 +67,10 @@ extension DatatransAg: TransactionDelegate{
     }
     
     func transactionDidFail(_ transaction: Transaction, error: TransactionError) {
-        context.rejecter("-1", "Transaction Failed", error)
+        context.rejecter(
+            DAGConstants.Status.FAILED,
+            DAGConstants.Errors.TRANSACTION,
+            error)
     }
     
 }

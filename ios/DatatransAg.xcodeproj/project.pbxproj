@@ -6,6 +6,12 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE70799F28EE829A00426EC9 /* DAGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70799C28EE829A00426EC9 /* DAGConstants.swift */; };
+		EE7079A028EE829A00426EC9 /* DAGTransactionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70799D28EE829A00426EC9 /* DAGTransactionResult.swift */; };
+		EE7079A128EE829A00426EC9 /* DAGTransactionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70799E28EE829A00426EC9 /* DAGTransactionFactory.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -24,6 +30,9 @@
 		B3E7B5891CC2AC0600A0062D /* DatatransAg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatatransAg.m; sourceTree = "<group>"; };
 		EE604EA128E0A9E4004A5E4F /* DatatransAg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatatransAg.swift; sourceTree = "<group>"; };
 		EE604EA228E0AAAD004A5E4F /* DatatransAg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatatransAg-Bridging-Header.h"; sourceTree = "<group>"; };
+		EE70799C28EE829A00426EC9 /* DAGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAGConstants.swift; sourceTree = "<group>"; };
+		EE70799D28EE829A00426EC9 /* DAGTransactionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAGTransactionResult.swift; sourceTree = "<group>"; };
+		EE70799E28EE829A00426EC9 /* DAGTransactionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAGTransactionFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,12 +57,23 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				EE70799A28EE825D00426EC9 /* Sources */,
 				EE604EA228E0AAAD004A5E4F /* DatatransAg-Bridging-Header.h */,
 				EE604EA128E0A9E4004A5E4F /* DatatransAg.swift */,
 				B3E7B5881CC2AC0600A0062D /* DatatransAg.h */,
 				B3E7B5891CC2AC0600A0062D /* DatatransAg.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		EE70799A28EE825D00426EC9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EE70799C28EE829A00426EC9 /* DAGConstants.swift */,
+				EE70799E28EE829A00426EC9 /* DAGTransactionFactory.swift */,
+				EE70799D28EE829A00426EC9 /* DAGTransactionResult.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +107,7 @@
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -113,6 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE7079A128EE829A00426EC9 /* DAGTransactionFactory.swift in Sources */,
+				EE7079A028EE829A00426EC9 /* DAGTransactionResult.swift in Sources */,
+				EE70799F28EE829A00426EC9 /* DAGConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,32 +239,41 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DatatransAg;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DatatransAg-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DatatransAg;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DatatransAg-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
