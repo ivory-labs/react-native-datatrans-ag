@@ -22,7 +22,7 @@ export default function App() {
     })
     .then((result) => {
       startTransaction(result.transactionDetails.mobileToken, {
-        isTesting: false,
+        isTesting: true,
       })
       .then((r) => console.log(r))
       .catch((err) => {

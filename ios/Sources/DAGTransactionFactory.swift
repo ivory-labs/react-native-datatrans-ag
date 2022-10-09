@@ -7,6 +7,8 @@ import Datatrans
  */
 final class DAGTransactionFactory{
     
+    private let logger = DAGLogger(tag: "Factory")
+    
     enum FactoryError: Error{
         case parsingError(msg: String)
         
@@ -30,14 +32,12 @@ final class DAGTransactionFactory{
         
         let transaction: Transaction
         
-        #if DEBUG
-        print("[DEBUG] DataTrans iOS Transaction Factory")
-        print(": isTesting =", isTesting)
-        print(": suppr. Err. Dialog =", suppressCriticalErrorDialog)
-        print(": certPin =", useCertificatePinning)
-        print(": scheme =", appCallbackScheme ?? "scheme was null")
-        print(": saved method counts =", methods.count)
-        #endif
+        logger.print("DataTrans iOS Transaction Factory")
+        logger.print(" testing = \(isTesting)")
+        logger.print(" suppr. Err. Dialog = \(suppressCriticalErrorDialog)")
+        logger.print(" certPin = \(useCertificatePinning)")
+        logger.print(" scheme = \(appCallbackScheme ?? "scheme was null")")
+        logger.print(" saved method counts = \(methods.count)")
         
         switch(methods.count){
         case 0:     transaction = Transaction(mobileToken: mobileToken)

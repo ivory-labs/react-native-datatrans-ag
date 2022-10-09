@@ -8,6 +8,8 @@ import Datatrans
 @objc(DatatransAg)
 class DatatransAg: NSObject{
     
+    private let logger = DAGLogger(tag: "Module")
+    
     private struct Context{
         var resolver: RCTPromiseResolveBlock
         var rejecter: RCTPromiseRejectBlock
@@ -40,6 +42,14 @@ class DatatransAg: NSObject{
             }
         }
         catch{
+            if let validationError = error as? DAGTransactionFactory.FactoryError{
+                logger.print("Transaction Factory Error")
+                logger.print("error = \(validationError.localizedDescription)")
+            }
+            else{
+                logger.print("Transaction Generation Error")
+                logger.print("error description = \(error.localizedDescription)")
+            }
             rejecter(
                 DAGConstants.Codes.ERROR,
                 error.localizedDescription,
@@ -52,10 +62,18 @@ class DatatransAg: NSObject{
 extension DatatransAg: TransactionDelegate{
     
     func transactionDidFinish(_ transaction: Transaction, result: TransactionSuccess) {
+        logger.print("Transaction Finished")
+        logger.print("method = \(result.paymentMethodType)")
+        logger.print("savedMethod = \(String(describing: result.savedPaymentMethod))")
+        logger.print("transactionId = \(result.transactionId)")
         context.resolver(TransactionResult.success(transactionId: result.transactionId).toDictionary())
     }
     
     func transactionDidFail(_ transaction: Transaction, error: TransactionError) {
+        logger.print("Transaction Failed")
+        logger.print("error description = \(error.localizedDescription)")
+        logger.print("error failure reason = \(error.localizedFailureReason ?? "null")")
+        logger.print("error recovery = \(error.localizedRecoverySuggestion ?? "null")")
         context.rejecter(
             DAGConstants.Codes.ERROR,
             error.localizedDescription,
@@ -63,6 +81,7 @@ extension DatatransAg: TransactionDelegate{
     }
     
     func transactionDidCancel(_ transaction: Transaction) {
+        logger.print("Transaction Canceled")
         context.resolver(TransactionResult.canceled().toDictionary())
     }
     
