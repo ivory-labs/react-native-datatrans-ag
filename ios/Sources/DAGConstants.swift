@@ -1,7 +1,22 @@
+/**
+ Constants for Strings, Codes, etc.
+ */
 enum DAGConstants{
+    
+    enum Codes{
+        static let ERROR = "datatrans_error"
+    }
+    
     enum Status{
-        static let SUCCESS = "0"
-        static let FAILED = "-1"
+        case SUCCESS
+        case CANCELED
+        
+        func name() -> String{
+            switch(self){
+            case .SUCCESS: return "SUCCESS"
+            case .CANCELED: return "CANCELED"
+            }
+        }
     }
     
     enum Errors{

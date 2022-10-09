@@ -2,6 +2,9 @@ import Foundation
 import React
 import Datatrans
 
+/**
+ Main DataTrans iOS Implementation
+ */
 @objc(DatatransAg)
 class DatatransAg: NSObject{
     
@@ -19,24 +22,16 @@ class DatatransAg: NSObject{
         resolver: @escaping RCTPromiseResolveBlock,
         rejecter: @escaping RCTPromiseRejectBlock
     ){
-        // TODO
-        // 1. Proper implementation of sending response by serialization
-        // 2. Extracting options from map
-        // 3. Organize stuff
         
+        // INFO:
         // https://docs.datatrans.ch/docs/mobile-sdk#ios-integration
-        // Demo code
-        
-//        let transaction = Transaction(mobileToken: mobileToken)
-//        transaction.delegate = self
-//        transaction.options.testing = true
-//        transaction.options.useCertificatePinning = true
         
         do{
             let transaction = try DAGTransactionFactory().create(
                 mobileToken: mobileToken,
                 options: options)
             
+            transaction.delegate = self
             context = Context(resolver: resolver, rejecter: rejecter)
             
             DispatchQueue.main.async {
@@ -44,17 +39,11 @@ class DatatransAg: NSObject{
                 transaction.start(presentingController: rootVC)
             }
         }
-        catch let error as DAGTransactionFactory.FactoryError{
-            rejecter(
-                DAGConstants.Status.FAILED,
-                DAGConstants.Errors.PAYPARAM,
-                error)
-        }
         catch{
             rejecter(
-                DAGConstants.Status.FAILED,
-                DAGConstants.Errors.UNKNOWN,
-                error)
+                DAGConstants.Codes.ERROR,
+                error.localizedDescription,
+                nil)
         }
     }
     
@@ -63,14 +52,18 @@ class DatatransAg: NSObject{
 extension DatatransAg: TransactionDelegate{
     
     func transactionDidFinish(_ transaction: Transaction, result: TransactionSuccess) {
-        context.resolver(result)
+        context.resolver(TransactionResult.success(transactionId: result.transactionId).toDictionary())
     }
     
     func transactionDidFail(_ transaction: Transaction, error: TransactionError) {
         context.rejecter(
-            DAGConstants.Status.FAILED,
-            DAGConstants.Errors.TRANSACTION,
-            error)
+            DAGConstants.Codes.ERROR,
+            error.localizedDescription,
+            nil)
+    }
+    
+    func transactionDidCancel(_ transaction: Transaction) {
+        context.resolver(TransactionResult.canceled().toDictionary())
     }
     
 }

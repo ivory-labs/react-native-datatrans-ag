@@ -2,6 +2,9 @@ import Foundation
 import React
 import Datatrans
 
+/**
+ Creates DataTrans Transaction objects
+ */
 final class DAGTransactionFactory{
     
     enum FactoryError: Error{
@@ -27,12 +30,14 @@ final class DAGTransactionFactory{
         
         let transaction: Transaction
         
-        // debug
-        print("isTesting =", isTesting)
-        print("suppr. =", suppressCriticalErrorDialog)
-        print("certPin =", useCertificatePinning)
-        print("scheme =", appCallbackScheme)
-        print("methods =", methods.count)
+        #if DEBUG
+        print("[DEBUG] DataTrans iOS Transaction Factory")
+        print(": isTesting =", isTesting)
+        print(": suppr. Err. Dialog =", suppressCriticalErrorDialog)
+        print(": certPin =", useCertificatePinning)
+        print(": scheme =", appCallbackScheme ?? "scheme was null")
+        print(": saved method counts =", methods.count)
+        #endif
         
         switch(methods.count){
         case 0:     transaction = Transaction(mobileToken: mobileToken)
