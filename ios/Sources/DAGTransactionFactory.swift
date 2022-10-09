@@ -5,12 +5,10 @@ import Datatrans
 final class DAGTransactionFactory{
     
     enum FactoryError: Error{
-        // case nullError(msg: String)
         case parsingError(msg: String)
         
         var localizedDescription: String{
             switch(self){
-            // case .nullError(msg: let msg): return msg
             case .parsingError(msg: let msg): return msg
             }
         }
@@ -21,6 +19,7 @@ final class DAGTransactionFactory{
     init(){}
     
     func create(mobileToken: String, options: NSDictionary) throws -> Transaction{
+        let methods = try getSavedPaymentMethods(map: options)
         let isTesting = try getBool(map: options, key: K.IS_TESTING)
         let suppressCriticalErrorDialog = try getBool(map: options, key: K.SUPPRESS_CRITICAL_ERROR_DIALOG)
         let useCertificatePinning = try getBool(map: options, key: K.USE_CERTIFICATE_PINNING)
@@ -28,15 +27,18 @@ final class DAGTransactionFactory{
         
         let transaction: Transaction
         
-        // todo: handle saved payment methods
-        
         // debug
         print("isTesting =", isTesting)
         print("suppr. =", suppressCriticalErrorDialog)
         print("certPin =", useCertificatePinning)
         print("scheme =", appCallbackScheme)
+        print("methods =", methods.count)
         
-        transaction = Transaction(mobileToken: mobileToken)
+        switch(methods.count){
+        case 0:     transaction = Transaction(mobileToken: mobileToken)
+        case 1:     transaction = Transaction(mobileToken: mobileToken, savedPaymentMethod: methods[0])
+        default:    transaction = Transaction(mobileToken: mobileToken, savedPaymentMethods: methods)
+        }
         
         transaction.options.testing = isTesting
         transaction.options.useCertificatePinning = useCertificatePinning
@@ -44,6 +46,32 @@ final class DAGTransactionFactory{
         transaction.options.appCallbackScheme = appCallbackScheme
         
         return transaction
+    }
+    
+    private func getSavedPaymentMethods(map: NSDictionary) throws -> [SavedPaymentMethod]{
+        let key = K.PAYMENT_METHODS
+        var methods: [SavedPaymentMethod] = []
+        
+        let methodsInMap = try getArray(map: map, key: key)
+        let methodsInMapCount = methodsInMap.count
+        if (methodsInMapCount > 0){
+            for i in 0..<methodsInMapCount{
+                guard let item = methodsInMap.object(at: i) as? NSDictionary, !isNull(value: item) else {
+                    break
+                }
+                
+                guard let type = try getInteger(map: item, key: K.TYPE),
+                      let alias = try getString(map: item, key: K.ALIAS) else {
+                    break
+                }
+                
+                let methodType = PaymentMethodType(rawValue: type)!
+                let method = SavedPaymentMethod(type: methodType, alias: alias)
+                methods.append(method)
+            }
+        }
+        
+        return methods
     }
     
 }
@@ -54,7 +82,6 @@ extension DAGTransactionFactory{
     
     private func getArray(map: NSDictionary, key: String) throws -> NSArray{
         guard let obj = map.value(forKey: key) else{
-            // throw FactoryError.nullError(msg: "\(key) array was null")
             return NSArray()
         }
         
@@ -67,7 +94,6 @@ extension DAGTransactionFactory{
     
     private func getBool(map: NSDictionary, key: String) throws -> Bool{
         guard let obj = map.value(forKey: key), !isNull(value: obj) else{
-            // throw FactoryError.nullError(msg: "\(key) bool was null")
             return false
         }
         
@@ -80,12 +106,23 @@ extension DAGTransactionFactory{
     
     private func getString(map: NSDictionary, key: String) throws -> String?{
         guard let obj = map.value(forKey: key), !isNull(value: obj) else{
-            // throw FactoryError.nullError(msg: "\(key) string was null")
             return nil
         }
         
         guard let str = obj as? String else {
             throw FactoryError.parsingError(msg: "\(key) might not be a string")
+        }
+        
+        return str
+    }
+    
+    private func getInteger(map: NSDictionary, key: String) throws -> Int?{
+        guard let obj = map.value(forKey: key), !isNull(value: obj) else{
+            return nil
+        }
+        
+        guard let str = obj as? Int else {
+            throw FactoryError.parsingError(msg: "\(key) might not be an integer")
         }
         
         return str
