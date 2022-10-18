@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const DOMAIN = 'mysponsor-service.herokuapp.com';
-const DOMAIN_2 = 'service.my-sponsor.ch'
+const DOMAIN = 'service.my-sponsor.ch'
 
 export interface InitializePaymentParams {
   userId: number;
@@ -28,8 +27,7 @@ export interface InitializePaymentResult {
 export const initializePayment = async (
   params: InitializePaymentParams
 ): Promise<InitializePaymentResult> => {
-  const url = `https://${DOMAIN_2}/api/v1/payments/initialize-twint`;
+  const url = `https://${DOMAIN}/api/v1/payments/initialize-twint`;
   const { data } = await axios.post(url, params);
   return data;
 };
-	
