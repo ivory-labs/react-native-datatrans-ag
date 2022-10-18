@@ -35,13 +35,12 @@ public class TransactionFactory {
         } else {
             transaction = new Transaction(mobileToken, savedPaymentMethods);
         }
-        transaction.getOptions().setTesting(isTesting);
+        transaction.getOptions().setTesting(false);
         transaction.getOptions().setSuppressCriticalErrorDialog(suppressCriticalErrorDialog);
         transaction.getOptions().setUseCertificatePinning(useCertificatePinning);
         if (appCallbackScheme != null) {
             transaction.getOptions().setAppCallbackScheme(appCallbackScheme);
         }
-
         return transaction;
     }
 
