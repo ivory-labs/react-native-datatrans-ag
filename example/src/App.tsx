@@ -13,16 +13,18 @@ export default function App() {
      */
 
     initializePayment({
-      "amount": 7.34,
+      "amount": 5,
       "quantity": 1,
       "userId": 41,
-      "clubId": 3,
-      "productId": 6,
+      "clubId": 1,
+      "productId": 24,
       "mobileSDK": true
     })
     .then((result) => {
+      console.log(result.transactionDetails)
       startTransaction(result.transactionDetails.mobileToken, {
-        isTesting: true,
+        isTesting: false,
+        appCallbackScheme:"com.reactnativedatatransag.dtsdk"
       })
       .then((r) => console.log(r))
       .catch((err) => {
