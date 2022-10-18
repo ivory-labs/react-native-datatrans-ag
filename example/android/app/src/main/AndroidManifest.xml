@@ -23,6 +23,18 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <activity
+        android:name="ch.datatrans.payment.ExternalProcessRelayActivity"
+        android:launchMode="singleTask"
+        android:enabled="false"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="com.reactnativedatatransag.dtsdk" />
+        </intent-filter>
+    </activity>
     </application>
 
 </manifest>
