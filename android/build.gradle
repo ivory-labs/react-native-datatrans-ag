@@ -3,7 +3,6 @@ buildscript {
         repositories {
             google()
             mavenCentral()
-            jcenter()
         }
 
         dependencies {
@@ -19,15 +18,13 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('DatatransAg_compileSdkVersion', 29)
+    compileSdkVersion safeExtGet('DatatransAg_compileSdkVersion', 33)
     defaultConfig {
         minSdkVersion safeExtGet('DatatransAg_minSdkVersion', 21) // Min SDK supported by datatrans
-        targetSdkVersion safeExtGet('DatatransAg_targetSdkVersion', 29)
+        targetSdkVersion safeExtGet('DatatransAg_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
-
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -53,7 +50,6 @@ repositories {
     }
     google()
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
