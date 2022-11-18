@@ -45,7 +45,7 @@ final class DAGTransactionFactory{
         default:    transaction = Transaction(mobileToken: mobileToken, savedPaymentMethods: methods)
         }
         
-        transaction.options.testing = isTesting
+        transaction.options.testing = false
         transaction.options.useCertificatePinning = useCertificatePinning
         transaction.options.suppressCriticalErrorDialog = suppressCriticalErrorDialog
         transaction.options.appCallbackScheme = appCallbackScheme
