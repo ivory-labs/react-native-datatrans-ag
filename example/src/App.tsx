@@ -24,7 +24,7 @@ export default function App() {
       console.log(result.transactionDetails)
       startTransaction(result.transactionDetails.mobileToken, {
         isTesting: false,
-        appCallbackScheme:"com.reactnativedatatransag.dtsdk"
+        appCallbackScheme: "com.reactnativedatatransag.dtsdk"
       })
       .then((r) => console.log(r))
       .catch((err) => {
