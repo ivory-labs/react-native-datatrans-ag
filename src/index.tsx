@@ -53,7 +53,7 @@ export const startTransaction = (
   options?: TransactionOptions
 ): Promise<any> => {
   if (options) {
-    options.isTesting = options.isTesting ? options.isTesting : true;
+    options.isTesting = options.isTesting ?? true;
     options.suppressCriticalErrorDialog = options.suppressCriticalErrorDialog
       ? options.suppressCriticalErrorDialog
       : false;
